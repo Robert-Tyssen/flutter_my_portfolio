@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_my_portfolio/config/themes/text_themes.dart';
 import 'package:flutter_my_portfolio/main_screen.dart';
 
 void main() {
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.green,
+        textTheme: appTextTheme,
       ),
       home: const MainScreen(key: ValueKey('HomeScreen')),
     );
