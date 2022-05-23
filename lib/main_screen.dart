@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_my_portfolio/contact_screen.dart';
 import 'package:flutter_my_portfolio/home_screen.dart';
+import 'package:flutter_my_portfolio/project_screen.dart';
+
+import 'about_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -21,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
             selectedIndex: _selectedIndex,
             onDestinationSelected: _setNavigationIndex,
             labelType: NavigationRailLabelType.none,
-            groupAlignment: -0.75,
+            groupAlignment: -1.0,
             destinations: const [
               // Home page
               NavigationRailDestination(
@@ -51,17 +54,27 @@ class _MainScreenState extends State<MainScreen> {
               NavigationRailDestination(
                 icon: Icon(Icons.phone_outlined),
                 selectedIcon: Icon(Icons.phone_rounded),
-                label: Text('Projects'),
+                label: Text('Contact'),
                 padding: EdgeInsets.symmetric(vertical: 8),
               ),
             ],
           ),
           Flexible(
-            child: _selectedIndex == 0 ? HomeScreen() : ContactScreen(),
+            child: _getChildScreen(_selectedIndex),
           ),
         ],
       ),
     );
+  }
+
+  Widget _getChildScreen(int index) {
+    switch (_selectedIndex) {
+      case 0: return HomeScreen();
+      case 1: return AboutScreen();
+      case 2: return ProjectScreen();
+      case 3: return ContactScreen();
+      default: return ContactScreen();
+    }
   }
 
   void _setNavigationIndex(int index) => setState(() {
